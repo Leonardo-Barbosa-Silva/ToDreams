@@ -8,6 +8,8 @@ const initialState = {
     isLoading: false,
     isSuccess: false,
     isError: false,
+    isRegistered: false,
+    isLogged: false,
     message: '',
     mode: 'light'
 }
@@ -92,7 +94,8 @@ export const authSlice = createSlice({
                 state.isLoading = false
                 state.isError = false
                 state.isSuccess = true
-                state.user = action.payload
+                state.isRegistered = true
+                state.isLogged = false
             })
             .addCase(registerUser.rejected, (state, action) => {
                 state.isLoading = false
@@ -111,7 +114,10 @@ export const authSlice = createSlice({
                 state.isLoading = false
                 state.isError = false
                 state.isSuccess = true
+                state.isLogged = true
+                state.isRegistered = true
                 state.user = action.payload
+                state.token = action.payload.token
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.isLoading = false

@@ -32,7 +32,6 @@ module.exports = {
                 return res.status(400).json( { message: 'Please add a password' })
             }
 
-            // Check if user already exists
             const userExists = await usersModel.findOne({ email })
 
             if (userExists) {
@@ -56,7 +55,7 @@ module.exports = {
                     createdAt: userCreated.createdAt,
                     updatedAt: userCreated.updatedAt
                 },
-                userToken: await jwtGenerate(userCreated._id)
+                token: await jwtGenerate(userCreated._id)
             })
 
         } catch (error) {
@@ -86,7 +85,6 @@ module.exports = {
                 return res.status(400).json( { message: 'Please add a password' })
             }
 
-            // Check for user email
             const user = await usersModel.findOne({ email }).select('+password')
 
             if (!user) {
@@ -105,7 +103,7 @@ module.exports = {
                     createdAt: user.createdAt,
                     updatedAt: user.updatedAt
                 },
-                userToken: await jwtGenerate(user._id)
+                token: await jwtGenerate(user._id)
             })
 
         } catch (error) {
@@ -132,7 +130,7 @@ module.exports = {
                     createdAt: req.user.createdAt,
                     updatedAt: req.user.updatedAt
                 },
-                userToken: await jwtGenerate(req.user._id)
+                token: await jwtGenerate(req.user._id)
             })
             
         } catch (error) {
