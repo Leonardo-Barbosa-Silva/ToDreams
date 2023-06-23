@@ -20,10 +20,13 @@ module.exports = {
 
         try {
 
-            const { name, email, password } = req.body
+            const { firstName, lastName, email, password } = req.body
 
-            if (!name) {
-                return res.status(400).json( { message: 'Please add a name' })
+            if (!firstName) {
+                return res.status(400).json( { message: 'Please add your first name' })
+            }
+            if (!lastName) {
+                return res.status(400).json( { message: 'Please add your last name' })
             } 
             if (!email) {
                 return res.status(400).json( { message: 'Please add a email' })
@@ -41,7 +44,8 @@ module.exports = {
             const hashedPassword = await bcrypt.hash(password, 10)
 
             const userCreated = await usersModel.create({
-                name,
+                firstName,
+                lastName,
                 email,
                 password: hashedPassword
             })
@@ -50,7 +54,8 @@ module.exports = {
                 message: 'User successfully registered',
                 item: {
                     _id: userCreated._id,
-                    name: userCreated.name,
+                    firstName: userCreated.firstName,
+                    lastName: userCreated.lastName,
                     email: userCreated.email,
                     createdAt: userCreated.createdAt,
                     updatedAt: userCreated.updatedAt

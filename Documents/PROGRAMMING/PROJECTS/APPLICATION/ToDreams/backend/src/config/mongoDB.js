@@ -6,12 +6,13 @@ const USER_PASSWORD = encodeURIComponent(process.env.USER_PASSWORD)
 const connectDB = async (server) => {
     try {
         const conn = await mongoose.connect(
-            `mongodb+srv://${USER_NAME}:${USER_PASSWORD}@todreamscluster.wt1ri7l.mongodb.net/app_dev?retryWrites=true&w=majority`,
+            `mongodb+srv://${USER_NAME}:${USER_PASSWORD}@todreamscluster.wt1ri7l.mongodb.net/app?retryWrites=true&w=majority`,
             {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             }
         )
+
         console.log(`Database MongoDB running on: ${conn.connection.host.yellow}`.grey)
         server()
 

@@ -14,7 +14,8 @@ const limiter = rateLimit({
 
 router.get('/me', limiter, authUserToken, getMe)
 router.post('/register', limiter, [
-        check('name').isLength({ min: 3, max: 40 }),
+        check('firstName').isLength({ min: 3, max: 40 }),
+        check('lastName').isLength({ min: 3, max: 40 }),
         check('email').isEmail().withMessage('Please, provide a valid email'),
         check('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characteres')
     ],

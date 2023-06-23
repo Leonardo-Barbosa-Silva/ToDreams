@@ -1,7 +1,4 @@
-import { useSelector } from 'react-redux'
-import { useState } from 'react';
-import { Box, Typography, useTheme, Link } from '@mui/material';
-import { EditOutlinedIcon } from '@mui/icons-material';
+import { Box, Typography, useTheme } from '@mui/material';
 import Form from '../../components/AuthForm';
 
 
@@ -29,7 +26,6 @@ function Auth() {
                     ToDreams
                 </Typography>
             </Box>
-
             <Form />
 
             <Box>

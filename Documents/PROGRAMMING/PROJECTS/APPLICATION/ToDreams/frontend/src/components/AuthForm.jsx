@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { loginUser, registerUser } from '../features/auth/authSlice';
 import {
     Box,
     Typography,
@@ -7,7 +9,6 @@ import {
     Button,
     TextField
 } from '@mui/material'
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
@@ -23,24 +24,46 @@ const loginSchema = yup.object().shape({
     password: yup.string().required("required")
 })
 
-const initialValues = {
+const initialValuesRegister = {
     firstName: '',
     lastName: '',
     email: '',
     password: ''
 }
 
+const initialValuesLogin = {
+    email: '',
+    password: ''
+}
 
 function AuthForm() {
     const [ pageType, setPageType ] = useState('login')
 
-    const { isLogged, isRegistered, isError, message } = useSelector( state => state.auth )
+    const { isLogged, isError, message } = useSelector( state => state.auth )
 
     const { palette } = useTheme()
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    function onSubmitForm(userData) {
+        pageType === "login" ? (
+            dispatch(loginUser(userData))
+        ) : (
+            dispatch(registerUser(userData))
+        )
+    }
+
+    useEffect( () => {
+        if (isLogged) {
+            navigate('/home')
+        }
+    }, [isLogged, navigate])
+
     return (
         <Formik
-            initialValues={initialValues}
+            onSubmit={onSubmitForm}
+            initialValues={pageType === "login" ? initialValuesLogin : initialValuesRegister}
             validationSchema={pageType === "login" ? loginSchema : registerSchema}
         >
             { ({
@@ -63,13 +86,13 @@ function AuthForm() {
                 >
                     <Box
                         component="form"
-                        onSubmit={() => {}}
+                        onSubmit={handleSubmit}
                         backgroundColor={palette.background.alt}
                         borderRadius="20px"
                         sx={{
                             width: "80%",
                             height: "fit-content",
-                            padding: "50px",
+                            padding: "40px",
                             display: "grid",
                             gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
                             justifyContent: "center",
@@ -177,7 +200,7 @@ function AuthForm() {
                                 type="submit"
                                 sx={{
                                     width: "50%",
-                                    m: "10px 0",
+                                    m: "20px 0",
                                     p: "20px",
                                     backgroundColor: palette.primary.main,
                                     color: palette.background.alt,
