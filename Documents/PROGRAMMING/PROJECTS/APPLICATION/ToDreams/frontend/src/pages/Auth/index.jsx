@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Box, Typography, useTheme } from '@mui/material';
 import Form from '../../components/AuthForm';
 
@@ -5,6 +8,16 @@ import Form from '../../components/AuthForm';
 
 function Auth() {
     const { palette } = useTheme()
+
+    const { isLogged } = useSelector( state => state.auth )
+
+    const navigate = useNavigate()
+
+    useEffect( () => {
+        if (isLogged) {
+            navigate('/home')
+        }
+    }, [isLogged, navigate])
 
     return (
         <Box width="100%" height="100vh">
@@ -26,11 +39,8 @@ function Auth() {
                     ToDreams
                 </Typography>
             </Box>
+            
             <Form />
-
-            <Box>
-
-            </Box>
         </Box>
     )
 }

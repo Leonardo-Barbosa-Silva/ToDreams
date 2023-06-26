@@ -14,12 +14,8 @@ const register = async (userData) => {
 
 
 // Login user
-const login = async (userData) => {
+const login = async (userData, thunkAPI) => {
     const resp = await USERS_API.post('/login', userData)
-
-    if (resp.data.userToken) {
-        localStorage.setItem('userToken', JSON.stringify(resp.data))
-    }
 
     return resp.data
 }

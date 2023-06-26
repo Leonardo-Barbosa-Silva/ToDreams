@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { loginUser, registerUser } from '../features/auth/authSlice';
 import {
     Box,
@@ -44,7 +43,6 @@ function AuthForm() {
     const { palette } = useTheme()
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     function onSubmitForm(userData) {
         pageType === "login" ? (
@@ -53,12 +51,6 @@ function AuthForm() {
             dispatch(registerUser(userData))
         )
     }
-
-    useEffect( () => {
-        if (isLogged) {
-            navigate('/home')
-        }
-    }, [isLogged, navigate])
 
     return (
         <Formik

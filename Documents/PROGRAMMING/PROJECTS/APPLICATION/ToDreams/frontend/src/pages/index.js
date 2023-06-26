@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Box, useTheme } from "@mui/material";
-import Auth from "../pages/Auth";
+import Auth from "./Auth/index";
+import Home from "./Home/index";
 
 
 function IndexRoutes() {
-    const { isLoading } = useSelector( state => state.auth )
+    const { isLoading, isLogged } = useSelector( state => state.auth )
 
     const { palette } = useTheme()
 
@@ -37,7 +38,9 @@ function IndexRoutes() {
                 </Box>
             ) : (
                 <Routes>
-                    <Route path='/auth' element={<Auth />}/>
+                    <Route path="/auth" element={<Auth />}/>
+                    <Route path="/" element={isLogged ? <Home/> : <Auth />} />
+                    <Route path="/home" element={isLogged ? <Home/> : <Auth />} />
                 </Routes>
             )}
         </Router>
