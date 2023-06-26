@@ -13,7 +13,7 @@ const connectDB = async (server) => {
             }
         )
 
-        console.log(`Database MongoDB running on: ${conn.connection.host.yellow}`.grey)
+        console.log(`Database MongoDB running on: ${conn.connection.host}`.grey)
         server()
 
     } catch (error) {

@@ -1,11 +1,28 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "../features/auth/authSlice";
-import goalReducer from "../features/goals/goalSlice"
+import {
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER
+} from 'redux-persist';
 
 
-export const store = configureStore({
-    reducer: {
-        auth: authReducer,
-        goal: goalReducer
-    }
-})
+export const store = (authReducer, goalsReducer) => (
+    configureStore(
+        {
+            reducer: {
+                auth: authReducer,
+                goals: goalsReducer
+            },
+            middleware: (getDefaultMiddleware) => (
+                getDefaultMiddleware({
+                    serializableCheck: {
+                        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+                    }
+                })
+            )
+        }
+    )
+)

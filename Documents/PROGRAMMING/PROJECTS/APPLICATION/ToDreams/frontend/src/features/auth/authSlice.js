@@ -80,6 +80,9 @@ export const authSlice = createSlice({
             state.isError = false
             state.isSuccess = false
             state.message = ''
+        },
+        changeMode: (state) => {
+            state.mode === "light" ? state.mode = "dark" :  state.mode = "light"
         }
     },
     extraReducers: (builder) => {
@@ -120,7 +123,6 @@ export const authSlice = createSlice({
                 state.isRegistered = true
                 state.user = action.payload
                 state.token = action.payload.token
-                localStorage.setItem('auth', JSON.stringify(state))
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.isLoading = false
@@ -150,5 +152,5 @@ export const authSlice = createSlice({
 
 
 
-export const { reset, resetAlert } = authSlice.actions
+export const { reset, resetAlert, changeMode } = authSlice.actions
 export default authSlice.reducer

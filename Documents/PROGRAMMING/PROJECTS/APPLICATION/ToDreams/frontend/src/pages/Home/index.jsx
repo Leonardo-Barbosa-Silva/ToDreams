@@ -1,32 +1,20 @@
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { getGoals, reset, resetAlert } from '../../features/goals/goalSlice'
 import {
     Box,
     Typography,
-    useTheme,
-    Button,
-    TextField
+    useTheme
 } from '@mui/material'
-import { LogoutOutlined } from '@mui/icons-material'
-/*import GoalForm from '../../components/GoalForm'
-import GoalItem from '../../components/GoalItem'
-import Spinner from '../../components/Spinner'
-import Alert from '../../components/Alert'
-import NavBar from '../../components/NavBar'*/
+import { LogoutOutlined, DarkModeOutlined, LightModeOutlined } from '@mui/icons-material'
+import { changeMode, reset as resetAuth } from '../../features/auth/authSlice'
 
 
 
 export default function Dashboard() {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { user } = useSelector( (state) => state.auth )
-    const { goals, isError, isSuccess, isLoading, message } = useSelector( (state) => state.goal )
+    const { mode } = useSelector( (state) => state.auth )
 
     const { palette } = useTheme()
-    
     
     return (
 
@@ -40,34 +28,62 @@ export default function Dashboard() {
                 flexDirection: "column",
                 justifyContent: "space-between"
             }}>
-                <Typography variant='h1' fontWeight="bold" sx={{
-                    "&:hover": {
-                        cursor: "pointer",
-                        opacity: "20%"
-                    }
-                }}>
+                <Typography variant='h1' fontWeight="bold">
                     ToDreams
                 </Typography>
 
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    onClick={ () => {
-                        localStorage.removeItem('')
-                    }}
-                    sx={{
-                        "&:hover": {
-                            cursor: "pointer",
-                            opacity: "20%"
-                        }
-                    }}
-                >
-                    <LogoutOutlined />
-
-                    <Typography variant='h4' fontWeight="bold">
-                        Log Out
+                {mode === "light" ? (
+                    <Typography
+                        variant="h4"
+                        fontWeight="bold"
+                        onClick={ () => dispatch(changeMode()) }
+                        display="flex"
+                        alignItems="center"
+                        gap="15px"
+                        sx={{
+                            "&:hover": {
+                                cursor: "pointer",
+                                opacity: "20%"
+                            }
+                        }}
+                    >
+                        <LightModeOutlined /> Mode
                     </Typography>
-                </Box>
+                ) : (
+                    <Typography
+                        variant="h4"
+                        fontWeight="bold"
+                        onClick={ () => dispatch(changeMode()) }
+                        display="flex"
+                        alignItems="center"
+                        gap="15px"
+                        sx={{
+                            "&:hover": {
+                                cursor: "pointer",
+                                opacity: "20%"
+                            }
+                        }}
+                    >
+                        <DarkModeOutlined /> Mode
+                    </Typography>
+                )}
+
+                    <Typography 
+                        variant="h4"
+                        fontWeight="bold"
+                        onClick={ () => dispatch(resetAuth()) }
+                        display="flex"
+                        alignItems="center"
+                        gap="15px"
+                        sx={{
+                            "&:hover": {
+                                cursor: "pointer",
+                                opacity: "20%"
+                            }
+                        }}
+                    >
+                        <LogoutOutlined /> Log Out
+                    </Typography>
             </Box>
             
             

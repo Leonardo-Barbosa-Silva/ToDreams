@@ -8,7 +8,7 @@ import IndexRoutes from "./pages/index.js";
 
 export default function App() {
 
-  const { mode } = useSelector( state => state.auth.mode )
+  const { mode } = useSelector( state => state.auth )
   const theme = useMemo( () => createTheme(themeSettings(mode)), [mode] )
 
   return (
