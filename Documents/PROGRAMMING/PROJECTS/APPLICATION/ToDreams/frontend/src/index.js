@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux'
-import { store } from './store'
+import { Provider } from 'react-redux';
+import { store } from './store';
 import App from './App';
 import './index.css';
 import {
@@ -14,8 +14,8 @@ import authReducer from './features/auth/authSlice';
 import goalsReducer from './features/goals/goalSlice';
 
 
-const persistConfigAuth = { key: 'auth-root', storage, version: 1 }
-const persistConfigGoals = { key: 'goals-root', storage, version: 1 }
+const persistConfigAuth = { key: 'auth', storage, version: 1 }
+const persistConfigGoals = { key: 'goals', storage, version: 1 }
 const authReducerPersisted = persistReducer(persistConfigAuth, authReducer)
 const goalsReducerPersisted = persistReducer(persistConfigGoals, goalsReducer)
 
@@ -26,7 +26,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Provider store={storePersisted}>
-      <PersistGate loading={null} persistor={persistStore(storePersisted)} >
+      <PersistGate loading={null} persistor={persistStore(storePersisted)}>
         <App />
       </PersistGate>
     </Provider>

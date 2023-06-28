@@ -1,32 +1,57 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import {
     Box,
+    TextField,
     Typography,
-    useTheme
-} from '@mui/material'
-import { LogoutOutlined, DarkModeOutlined, LightModeOutlined } from '@mui/icons-material'
-import { changeMode, reset as resetAuth } from '../../features/auth/authSlice'
+    useTheme,
+    Button
+} from '@mui/material';
+import { LogoutOutlined, DarkModeOutlined, LightModeOutlined } from '@mui/icons-material';
+import { changeMode, reset as resetAuth } from '../../features/auth/authSlice';
+import { createGoal, getGoals } from '../../features/goals/goalSlice';
+import { useEffect } from 'react';
+import Goal from '../../components/Goal';
 
 
-
-export default function Dashboard() {
+export default function Home() {
     const dispatch = useDispatch()
 
-    const { mode } = useSelector( (state) => state.auth )
+    const { mode } = useSelector( state => state.auth )
+    const { goals, isError, isLoading, isSucess, message } = useSelector( state => state.goals )
 
     const { palette } = useTheme()
+
+    function handleSubmit(e) {
+        e.preventDefault()
+    
+        dispatch(createGoal(e.target[0].value))
+
+        e.target[0].value = ''
+    }
+
+    useEffect( () => {
+        dispatch(getGoals())
+    }, [])
     
     return (
 
-        <Box width="250px" height="100vh">
+        <Box 
+            width="100%" 
+            height="100vh" 
+            display="flex" 
+            sx={{
+                overflowX: "hidden"
+            }}
+        >
             <Box component="header" sx={{
-                width: "100%",
+                width: "250px",
                 height: "100%",
                 padding: "20px",
                 backgroundColor: palette.background.alt,
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
+                position: "fixed"
             }}>
                 <Typography variant='h1' fontWeight="bold">
                     ToDreams
@@ -85,41 +110,63 @@ export default function Dashboard() {
                         <LogoutOutlined /> Log Out
                     </Typography>
             </Box>
+
+            <Box
+                width="calc(100% - 250px)" 
+                height="fit-content"
+                marginLeft="250px"
+                display="flex" 
+                flexDirection="column"
+                alignItems="center"
+                padding="30px 0"
+                gap="30px"
+            >
+                <Box
+                    component="form"
+                    width="80%"
+                    height="fit-content"
+                    onSubmit={handleSubmit.bind(null)}
+                >
+                    <TextField
+                        label="Write your goals and dreams :)"
+                        type="text"
+                        sx={{
+                            width: "100%"
+                        }}
+                    />
+
+                    <Button
+                        type="submit"
+                        sx={{
+                            width: "100%",
+                            m: "20px 0",
+                            p: "10px",
+                            backgroundColor: palette.primary.main,
+                            color: palette.background.alt,
+                            "&:hover": { 
+                                color: palette.primary.main
+                            }
+                        }}
+                    >
+                        Create
+                    </Button>
+                </Box>
+
+                <Box
+                    width="calc(100vw - 250px)"
+                    display="grid"
+                    gridTemplateColumns="repeat(6, minmax(0, 1fr))"
+                    gap="20px"
+                    padding="0 20px"
+                    alignItems="start"
+                >
+                    {goals && goals.length > 0 && goals.map( (goal) => (
+                        <Goal key={goal._id} goal={goal} />
+                    ))}
+                </Box>
+            </Box>
             
             
         </Box>
-
-        /*
-        <div className="dashboard-container">
-            {isLoading ? (
-                <Spinner />
-            ) : (
-                    <>
-                        <NavBar />
-                        {isError && <Alert message={message} alertType="error" show />}
-                        {isSuccess && message !== 'Successfully get user goals' ? (
-                            <Alert message={message} alertType="success" show />
-                        ) : (
-                            <></>
-                        )}
-                        <section className="dashboard-goal-form-container">
-                            <GoalForm />
-                        </section>
-                        <section className="dashboard-content">
-                            {goals.length > 0 ? (
-                                <div className="goals">
-                                    {goals.map( (goal) => (
-                                        <GoalItem key={goal._id} goal={goal} />
-                                    ))}
-                                </div>
-                            ) : (
-                                <h3>You have not set any goals</h3>
-                            )}
-                        </section>
-                    </>
-                )
-            }
-        </div>
-        */
     )
 }

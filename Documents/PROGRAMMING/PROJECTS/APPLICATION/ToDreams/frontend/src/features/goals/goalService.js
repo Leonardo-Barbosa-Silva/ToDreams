@@ -34,9 +34,7 @@ const deleteGoal = async (goalID, userToken) => {
 
 
 
-// Request for get goals
 const getGoals = async (userToken) => {
-    // Authorization bearer user token
     const config = {
         headers: {
             Authorization: `Bearer ${userToken}`

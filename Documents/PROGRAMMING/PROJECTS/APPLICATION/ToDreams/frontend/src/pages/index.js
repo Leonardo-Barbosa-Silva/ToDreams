@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Box, useTheme } from "@mui/material";
 import Auth from "./Auth/index";
 import Home from "./Home/index";
@@ -18,7 +18,7 @@ function IndexRoutes() {
                     height: "100vh",
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "center"
+                    alignItems: "center",
                 }}>
                     <Box
                         sx={{
@@ -38,8 +38,8 @@ function IndexRoutes() {
                 </Box>
             ) : (
                 <Routes>
+                    <Route path="/" element={isLogged ? <Navigate to="/home" /> : <Auth />} />
                     <Route path="/auth" element={<Auth />}/>
-                    <Route path="/" element={isLogged ? <Home/> : <Auth />} />
                     <Route path="/home" element={isLogged ? <Home/> : <Auth />} />
                 </Routes>
             )}

@@ -3,6 +3,7 @@ export const colorTokens = {
       0: "#FFFFFF",
       10: "#F6F6F6",
       50: "#F0F0F0",
+      80: "#EAEAEA",
       100: "#E0E0E0",
       200: "#C2C2C2",
       300: "#A3A3A3",
@@ -68,7 +69,7 @@ export const colorTokens = {
                 light: colorTokens.grey[50],
               },
               background: {
-                default: colorTokens.grey[100],
+                default: colorTokens.grey[80],
                 alt: colorTokens.grey[0],
               },
             }),
