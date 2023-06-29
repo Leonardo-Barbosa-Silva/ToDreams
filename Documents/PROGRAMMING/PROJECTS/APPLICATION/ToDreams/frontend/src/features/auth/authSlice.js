@@ -24,8 +24,6 @@ export const verifyToken = createAsyncThunk(
             const message = (error.response && error.response.data && error.response.data.message) ||
             error.message || error.toString()
 
-            localStorage.removeItem('userToken')
-
             return thunkAPI.rejectWithValue(message)
         }
     }
@@ -140,11 +138,15 @@ export const authSlice = createSlice({
                 state.isSuccess = true
                 state.user = action.payload
             })
-            .addCase(verifyToken.rejected, (state) => {
+            .addCase(verifyToken.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.isSuccess = false
+                state.isLogged = false
+                state.isRegistered = false
                 state.user = null
+                state.token = null
+                state.message = action.payload
             })
     }
 })

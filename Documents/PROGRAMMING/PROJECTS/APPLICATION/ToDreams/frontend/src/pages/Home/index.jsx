@@ -7,7 +7,7 @@ import {
     Button
 } from '@mui/material';
 import { LogoutOutlined, DarkModeOutlined, LightModeOutlined } from '@mui/icons-material';
-import { changeMode, reset as resetAuth } from '../../features/auth/authSlice';
+import { changeMode, reset as resetAuth, verifyToken } from '../../features/auth/authSlice';
 import { createGoal, getGoals } from '../../features/goals/goalSlice';
 import { useEffect } from 'react';
 import Goal from '../../components/Goal';
@@ -16,7 +16,7 @@ import Goal from '../../components/Goal';
 export default function Home() {
     const dispatch = useDispatch()
 
-    const { mode } = useSelector( state => state.auth )
+    const { mode, token } = useSelector( state => state.auth )
     const { goals, isError, isLoading, isSucess, message } = useSelector( state => state.goals )
 
     const { palette } = useTheme()
@@ -31,6 +31,8 @@ export default function Home() {
 
     useEffect( () => {
         dispatch(getGoals())
+
+        dispatch(verifyToken(token))
     }, [])
     
     return (

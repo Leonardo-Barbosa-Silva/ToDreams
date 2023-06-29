@@ -38,9 +38,9 @@ function IndexRoutes() {
                 </Box>
             ) : (
                 <Routes>
-                    <Route path="/" element={isLogged ? <Navigate to="/home" /> : <Auth />} />
-                    <Route path="/auth" element={<Auth />}/>
-                    <Route path="/home" element={isLogged ? <Home/> : <Auth />} />
+                    <Route path="/" element={<Navigate to="/home"/>} />
+                    <Route path="/home" element={isLogged ? <Home/> : <Navigate to="/auth"/>} />
+                    <Route path="/auth" element={isLogged ? <Navigate to="/home"/> : <Auth />} />
                 </Routes>
             )}
         </Router>
