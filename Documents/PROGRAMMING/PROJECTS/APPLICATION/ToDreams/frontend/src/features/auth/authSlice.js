@@ -11,6 +11,7 @@ const initialState = {
     isRegistered: false,
     isLogged: false,
     message: '',
+    messageUser: '',
     mode: 'light'
 }
 
@@ -146,7 +147,7 @@ export const authSlice = createSlice({
                 state.isRegistered = false
                 state.user = null
                 state.token = null
-                state.message = action.payload
+                state.messageUser = action.payload
             })
     }
 })
