@@ -1,0 +1,21 @@
+{
+  "name": "todreams",
+  "version": "1.0.0",
+  "description": "Application for help you organize your goals",
+  "main": "index.js",
+  "scripts": {
+    "server-dev": "cd ./backend && npm run server-dev",
+    "client-dev": "cd ./frontend && npm start",
+    "app-dev": "npm-run-all --parallel server-dev client-dev"
+  },
+  "author": "Leonardo B. Silva",
+  "license": "ISC",
+  "dependencies": {
+    "helmet": "^6.0.1",
+    "path": "^0.12.7",
+    "pm2": "5.2.2"
+  },
+  "devDependencies": {
+    "npm-run-all": "4.1.5"
+  }
+}
