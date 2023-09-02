@@ -1,4 +1,5 @@
 import ShpereDistort from "./SphereDistort";
+import astronaut from '../img/astronaut.png';
 
 
 const RightEntry = () => {
@@ -8,7 +9,7 @@ const RightEntry = () => {
 
             <ShpereDistort />
             
-            <img src="./src/img/astronaut.png" alt="animation astronaut moving to top and down" />
+            <img src={astronaut} alt="animation astronaut moving to top and down" />
         </div>
     )
 }

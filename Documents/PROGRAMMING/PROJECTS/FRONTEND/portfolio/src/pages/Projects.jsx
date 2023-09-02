@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { fadeIn } from '../utils/motion';
+import todreams from '../img/todreams.png';
 
 
 const Section = styled.section`
@@ -37,7 +37,7 @@ const Projects = () => {
                         onMouseMove={handleMouseMove}
                         onMouseLeave={handleMouseLeave}
                     >
-                        <img src="./src/img/todreams.png" alt="" />
+                        <img src={todreams} alt="" />
                         <h2>Todreams App</h2>
                         <p></p>
                     </motion.div>
