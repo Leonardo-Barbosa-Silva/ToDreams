@@ -1,0 +1,100 @@
+@use '../../styles/variables'
+    
+.modal
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background-color: rgba(0, 0, 0, 0.5)
+    z-index: 999
+    display: flex
+    justify-content: center
+    align-items: center
+
+    .content
+        height: 299px
+        width: 769px
+        background-color: #FFF
+
+        .close
+            width: 100%
+            height: 50px
+            right: 0
+            display: flex
+            justify-content: flex-end
+
+            button
+                height: 100%
+                width: 50px
+                cursor: pointer
+                background-color: #FFF
+                color: #707070
+                font-size: 20px
+
+        .body
+            display: flex
+
+            .text
+                width: 100%
+                display: flex
+                flex-direction: column
+                padding: 0 20px
+                gap: 10px
+
+                h3
+                    font-size: 20px
+                    font-weight: 400
+                    color: #041E50
+                    text-align: center
+                    letter-spacing: 4px
+                    margin-top: -25px
+                
+                h4
+                    font-size: 20px
+                    font-weight: 700
+                    color: #041E50
+
+                h5
+                    font-family: 'Lato'
+                    font-size: 10px
+                    color: #222222
+                    letter-spacing: 2px
+
+                p span
+                    font-size: 12px
+                    font-weight: 500
+                    color: #041E50
+
+                button
+                    height: 44px
+                    width: 245px
+                    background-color: variables.$secundary-color
+                    color: #FFF
+                    font-weight: 600
+                    border-radius: 4px
+                    cursor: pointer
+                    text-transform: uppercase
+                    margin-top: 10px
+
+                .count
+                    width: 110px
+                    height: 36px
+                    border: 1px solid #041E50
+                    border-radius: 4px
+                    display: flex
+                    justify-content: space-around
+                    align-items: center
+
+                    .less, .more
+                        font-family: 'Montserrat'
+                        font-weight: 700
+                        font-size: 30px
+                        color: #041E50
+                        cursor: pointer
+                    
+                    .number
+                        font-size: 16px
+                        color: #041E50
+                        font-weight: 700
+                

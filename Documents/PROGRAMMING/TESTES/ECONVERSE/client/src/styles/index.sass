@@ -1,0 +1,649 @@
+@use 'variables'
+    
+* 
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+    text-decoration: none
+    color: variables.$primary-color
+    font-family: variables.$primary-font, sans-serif
+    font-size: 12px
+    border: none
+    list-style: none
+
+body
+    background-color: #FFF
+
+.content-layout
+    width: 90%
+    height: 100%
+    display: flex
+    flex-direction: column
+
+%text-span
+    color: variables.$secundary-color
+    font-weight: 700
+    
+
+header
+    width: 100%
+    height: 144px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    hr
+        height: 2px
+        background-color: #000
+
+    p
+        display: flex
+        align-items: center
+        gap: 5px
+
+    span
+        @extend %text-span
+
+    .top
+        width: 100%
+        height: 32px
+        display: flex
+        justify-content: space-evenly
+        align-items: center
+        border-bottom: 1px solid variables.$border-color
+
+    .middle
+        width: 100%
+        height: 72px
+        display: flex
+        justify-content: space-around
+        align-items: center
+
+        form
+            width: 657px
+            height: 48px
+
+            input
+                width: 100%
+                height: 100%
+                font-size: 14px
+                border: none
+                background-color: variables.$terciary-color
+                border-radius: 15px
+                padding: 10px
+                background-image: url('../img/search.svg')
+                background-repeat: no-repeat
+                background-position: right
+                background-position-x: 610px
+
+        nav
+            display: flex
+            align-items: center
+            gap: 30px
+    
+    .bottom
+        width: 100%
+        height: 40px
+        display: flex
+        justify-content: space-evenly
+        align-items: center
+        border: 1px solid variables.$border-color
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1)
+
+        nav, ul
+            width: 100%
+            height: 100%
+            display: flex
+            align-items: center
+            justify-content: space-evenly
+
+            li
+                font-size: 12px
+                text-transform: uppercase
+                font-weight: 600
+                display: flex
+                align-items: center
+
+                img
+                    margin-right: 10px
+
+#banner
+    width: 100%
+    height: 390px
+    display: flex
+    align-items: center
+    flex-direction: column
+
+    img
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+    %text-heading
+        font-size: 48px
+        font-weight: 600
+        color: #FFF
+
+    .content-layout
+        margin-top: -390px
+
+
+        .text
+            width: 100%
+            margin-top: 40px
+
+        h2, h3
+            @extend %text-heading
+
+        h3
+            font-size: 36px
+
+        button
+            width: 227px
+            height: 60px
+            border-radius: 5px
+            background-color: variables.$secundary-color
+            color: #FFF
+            font-size: 18px
+            font-weight: 600
+            display: flex
+            align-items: center
+            justify-content: center
+            cursor: pointer
+            margin-top: 40px
+
+main
+    width: 100%
+    margin: 40px 0
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    .categories
+        height: 174px
+        width: 100%
+        display: flex
+        justify-content: center
+
+        .content-layout
+            flex-direction: row
+            justify-content: space-between
+
+            .item
+                width: 128px
+                height: 100%
+                display: flex
+                flex-direction: column
+                justify-content: space-between
+                align-items: center
+                cursor: pointer
+
+                .icon-bg
+                    width: 100%
+                    height: 128px
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    background-color: #F4F4F4
+                    border-radius: 10px
+                    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1)
+                
+                p
+                    font-size: 16px
+                    font-weight: 500
+                    color: #4E4E4E
+                    white-space: nowrap
+
+                    span
+                        @extend %text-span
+                        font-weight: 600
+                        font-size: 16px
+
+    .products
+        width: 100%
+        display: flex
+        flex-direction: column
+        align-items: center
+        padding: 60px 0 40px 0
+
+        .heading
+            width: 100%
+            display: flex
+            flex-direction: column
+            align-items: center
+            gap: 20px
+
+            .title
+                width: 90%
+                text-align: center
+                display: flex
+                align-items: center
+                justify-content: center
+
+                .left-line,
+                .right-line
+                    width: 25%
+                    height: 1px
+                    background-color: #DEDEDE
+
+                h2
+                    width: 400px
+                    font-size: 30px
+                    color: variables.$secundary-color
+        
+            .nav-products
+                width: 90%
+                display: flex
+                justify-content: center
+
+                ul
+                    @extend .nav-products
+                    width: 100%
+                    border: 1px solid rgba(0, 0, 0, 0.3)
+                    
+
+                a
+                    border-right: 1px solid rgba(0, 0, 0, 0.3)
+
+                a:last-child
+                    border-right: 0
+
+                a, li
+                    flex: 1
+                    height: 40px
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    font-size: 16px
+                    font-weight: 400
+                    color: #3B3B3B
+                    text-transform: uppercase
+
+                    span
+                        @extend %text-span
+                        font-size: 16px
+
+        .slider
+            height: 520px
+            width: 100%
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            margin-top: 20px
+
+            .items
+                height: 100%
+                width: 1266px
+                overflow-x: hidden
+                gap: 50px
+                display: flex
+                align-items: center
+                justify-content: center
+
+                .item
+                    width: 270px
+                    height: 500px
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2)
+                    border-radius: 10px
+                    padding: 20px
+                    display: flex
+                    flex-direction: column
+                    justify-content: space-between
+
+                    .info, p
+                        font-size: 15px
+                        color: #3F3F40
+
+                        s 
+                            text-decoration: line-through
+                        
+                        .pay
+                            font-size: 16px
+                            color: #808080
+                            margin-top: 20px
+
+                            p
+                                font-size: 12px
+                                font-weight: 400
+                                color: #3F3F40
+
+                                span
+                                    font-size: 20px
+                                    font-weight: 700
+                                    color: #3F3F40
+
+                            .delivery p
+                                margin-top: 10px
+                                font-size: 12px
+                                color: variables.$secundary-color
+                
+                .buy
+                    height: 44px
+                    width: 100%
+                    background-color: variables.$secundary-color
+                    border-radius: 4px
+                    color: #FFF
+                    font-weight: 600
+                    text-transform: uppercase
+                    cursor: pointer
+
+            .button-left, .button-right
+                position: absolute
+                cursor: pointer
+            .button-left
+                left: 2%
+            .button-right
+                right: 2%
+
+    
+    .partnes
+        width: 90%
+        padding: 80px 0 60px 0
+
+        .two-bg-img
+            height: 400px
+            width: 100%
+            display: grid
+            grid-template-columns: auto auto
+            justify-content: center
+            align-items: center
+            gap: 80px
+
+            img
+                width: 574px
+                height: 350px
+                object-fit: cover
+                border-radius: 20px
+                box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.5)
+
+            .text-bg-img
+                transform: translateY(-260px)
+                margin-left: 40px
+                display: flex
+                flex-direction: column
+                gap: 10px
+                padding-top: 40px
+
+                h3
+                    font-size: 40px
+                    color: #FFF
+                    font-weight: 700
+                h4
+                    font-size: 16px
+                    color: #FFF
+                    font-weight: 400
+                
+                button
+                    height: 48px
+                    width: 131px
+                    background-color: variables.$secundary-color
+                    color: #FFF
+                    font-size: 16
+                    font-weight: 900
+                    text-transform: uppercase
+                    border-radius: 10px
+                    letter-spacing: 1.5px
+        
+        .content-layout
+            transform: translateY(-250px)
+            display: flex
+            flex-direction: column
+            gap: 40px
+            margin-left: 40px
+
+            .text 
+                h2 
+                    font-size: 40px
+                    font-weight: 700
+                    color: #FFF
+                h3
+                    font-size: 16px
+                    color: #FFF
+                    font-weight: 400
+            
+            button
+                height: 48px
+                width: 131px
+                background-color: variables.$secundary-color
+                border-radius: 10px
+                color: #FFF
+                text-transform: uppercase
+                font-weight: 700
+
+    .related-products
+        width: 100%
+        display: flex
+        flex-direction: column
+        align-items: center
+        padding-bottom: 80px
+
+        .heading
+            gap: 10px
+
+            p
+                font-size: 15px
+                font-weight: 700
+                color: #3F3F40
+
+        .two-bg-img
+            height: 400px
+            width: 90%
+            display: grid
+            grid-template-columns: auto auto
+            gap: 80px
+            justify-content: center
+            align-items: center
+            padding: 40px 0
+
+            img
+                width: 574px
+                height: 350px
+                object-fit: cover
+                border-radius: 20px
+                box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.5)
+            
+            .text-bg-img
+                transform: translateY(-220px)
+                margin-left: 40px
+                display: flex
+                flex-direction: column
+                gap: 10px
+
+                h3
+                    font-size: 40px
+                    color: #FFF
+                    font-weight: 700
+                h4
+                    font-size: 16px
+                    color: #FFF
+                    font-weight: 400
+                
+                button
+                    height: 48px
+                    width: 131px
+                    background-color: variables.$secundary-color
+                    color: #FFF
+                    font-size: 16
+                    font-weight: 900
+                    text-transform: uppercase
+                    border-radius: 10px
+                    letter-spacing: 1.5px
+
+    .products-marks
+        @extend .related-products
+        height: 331px
+        display: flex
+        justify-content: center
+        overflow-x: hidden
+        padding: 0
+
+        .logos
+            height: 234px
+            width: 90%
+            display: flex
+            justify-content: space-between
+            align-items: center
+            margin-top: 30px
+
+            .wrapper
+                width: 211px
+                height: 211px
+                border-radius: 50%
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
+                display: flex
+                align-items: center
+                justify-content: center
+
+                img
+                    width: 172px
+                    height: 62px
+                    object-fit: cover-fit
+        
+        .next-img
+            position: absolute
+            right: 5%
+            cursor: pointer
+
+
+
+footer
+    width: 100%
+    height: 395px
+    background-color: #2A2A2A
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    .services
+        height: 325px
+        width: 100%
+        display: flex
+        justify-content: center
+
+        h3
+            font-size: 13px
+            font-weight: 700
+            color: #FFF
+
+        .title
+            margin-bottom: 30px
+
+        li, a
+            text-transform: uppercase
+            font-weight: 200
+            font-size: 12px
+            padding: 7px 0
+            color: #FFF
+
+        .content-layout
+            flex-direction: row
+            align-items: center
+            justify-content: space-between
+
+            .infos
+                display: flex
+                gap: 40px
+
+                .about-us
+                    width: 150px
+                    height: 224px
+                    margin-right: 40px
+
+                    .content
+                        display: flex
+                        flex-direction: column
+                        justify-content: space-between
+                        height: calc(100% - 50px)
+
+                        .icons
+                            display: flex
+                            gap: 30px
+                
+                .important
+                    @extend .about-us
+                    display: block
+                    margin: 0
+                    height: 236px
+
+                .payment
+                    width: 195px
+                    height: 192.55px
+
+                    .icons
+                        display: grid
+                        grid-template-columns: auto auto auto
+            
+            .register
+                height: 260px
+                width: 380px
+                background-color: #FFF
+                border-radius: 10px
+                display: flex
+                flex-direction: column
+                justify-content: space-evenly
+                align-items: center
+                text-align: center
+                padding: 10px 0
+
+                .title
+                    margin: 0
+                    text-transform: uppercase
+                    
+                    h3
+                        font-size: 18px
+                        font-weight: 200
+                        color: #3F3F40
+
+                    span
+                        font-size: 21px
+                        font-weight: 700
+                        color: #3F3F40   
+
+                form 
+                    display: flex
+                    gap: 10px
+
+                    input
+                        width: 230px
+                        height: 45px
+                        border-radius: 4px
+                        outline: none
+                        border: 1px solid #2A2A2A
+                        padding: 20px
+
+                    button
+                        width: 62px
+                        height: 45px
+                        background-color: variables.$secundary-color
+                        border-radius: 4px
+                        color: #FFF
+                        cursor: pointer
+
+
+    .copy
+        height: 70px
+        width: 100%
+        display: flex
+        justify-content: center
+        border-top: 1px solid #FFF
+
+        .content-layout
+            width: 90%
+            flex-direction: row
+            justify-content: space-between
+            align-items: center
+            letter-spacing: 0.25px
+
+            p
+                font-size: 10px
+                font-weight: 200
+                color: #FFF
+                text-transform: uppercase
+            
+            .icons
+                display: flex
+                align-items: center
+                gap: 40px
